@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:7
+    container_name: branch-redis
+    ports:
+      - "6379:6380"
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]

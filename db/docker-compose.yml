@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: branch-postgres
+    environment:
+      POSTGRES_DB: branchdb
+      POSTGRES_USER: branchuser
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5433:5432"
