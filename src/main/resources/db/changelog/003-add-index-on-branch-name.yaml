@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-add-index-on-branch-name
+      author: nezrin
+      changes:
+        - createIndex:
+            schemaName: branch_schema
+            tableName: branches
+            indexName: idx_branches_name
+            columns:
+              - column:
+                  name: name

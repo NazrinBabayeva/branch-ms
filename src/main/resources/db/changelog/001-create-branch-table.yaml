@@ -1,0 +1,65 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 000-create-branch-sequence
+      author: nezrin
+      preConditions:
+        onFail: MARK_RAN
+        not:
+          sequenceExists:
+            schemaName: branch_schema
+            sequenceName: branch_id_seq
+      changes:
+        - createSequence:
+            schemaName: branch_schema
+            sequenceName: branch_id_seq
+            startValue: 1
+            incrementBy: 1
+      rollback:
+        - dropSequence:
+            schemaName: branch_schema
+            sequenceName: branch_id_seq
+
+  - changeSet:
+      id: 001-create-branch-table
+      author: nezrin
+      preConditions:
+        onFail: MARK_RAN
+        not:
+          tableExists:
+            schemaName: branch_schema
+            tableName: branches
+      changes:
+        - createTable:
+            schemaName: branch_schema
+            tableName: branches
+            columns:
+
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  defaultValueSequenceNext: branch_schema.branch_id_seq
+
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+
+              - column:
+                  name: coordinates
+                  type: VARCHAR(255)
+
+              - column:
+                  name: status
+                  type: BOOLEAN
+
+      rollback:
+        - dropTable:
+            schemaName: branch_schema
+            tableName: branches

@@ -1,11 +1,34 @@
-version: '3'
+version: '3.8'
 
 services:
+
+  postgres:
+    image: postgres:15
+    container_name: branch-postgres
+    environment:
+      POSTGRES_DB: branchdb
+      POSTGRES_USER: branchuser
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - branch-network
+
   redis:
     image: redis:7
     container_name: branch-redis
     ports:
-      - "6379:6380"
-    volumes:
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+      - "6380:6379"
+    command: >
+      redis-server
+      --requirepass redisPass123
+    networks:
+      - branch-network
+
+volumes:
+  postgres_data:
+
+networks:
+  branch-network:

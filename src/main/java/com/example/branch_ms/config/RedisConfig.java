@@ -1,6 +1,4 @@
 package com.example.branch_ms.config;
-
-import com.example.branch_ms.model.entity.Branch;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisPassword;

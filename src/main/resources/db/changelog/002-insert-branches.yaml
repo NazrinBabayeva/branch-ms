@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-insert-branches
+      author: nezrin
+      changes:
+
+        - insert:
+            schemaName: branch_schema
+            tableName: branches
+            columns:
+              - column:
+                  name: name
+                  value: "Baku Branch"
+              - column:
+                  name: address
+                  value: "Baku, Azerbaijan"
+              - column:
+                  name: coordinates
+                  value: "40.4093,49.8671"
+              - column:
+                  name: status
+                  valueBoolean: true
+
+        - insert:
+            schemaName: branch_schema
+            tableName: branches
+            columns:
+              - column:
+                  name: name
+                  value: "Ganja Branch"
+              - column:
+                  name: address
+                  value: "Ganja, Azerbaijan"
+              - column:
+                  name: coordinates
+                  value: "40.6828,46.3606"
+              - column:
+                  name: status
+                  valueBoolean: true
+
+        - insert:
+            schemaName: branch_schema
+            tableName: branches
+            columns:
+              - column:
+                  name: name
+                  value: "Sumgait Branch"
+              - column:
+                  name: address
+                  value: "Sumgait, Azerbaijan"
+              - column:
+                  name: coordinates
+                  value: "40.5897,49.6686"
+              - column:
+                  name: status
+                  valueBoolean: false

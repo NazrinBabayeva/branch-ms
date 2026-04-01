@@ -53,4 +53,10 @@ public class BranchController {
         List<BranchResponseDto> responses = branchService.getBranchesFromRedis();
         return ResponseEntity.ok(responses);
     }
+
+    @PostMapping("/sync-redis")
+    public ResponseEntity<String> syncRedis() {
+        branchService.syncRedisWithDb();
+        return ResponseEntity.ok("Redis synced with DB");
+    }
 }
